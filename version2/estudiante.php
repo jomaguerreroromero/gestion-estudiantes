@@ -74,9 +74,9 @@ elseif (isset($_POST['borrar']))
      }       
 }   
    
-/*** Guardar en el array $estudiantes todos los datos de la tabla estudiantes ***/
+/*** Guardar en el array $filas todos los datos de la consulta ***/
 $sql = "SELECT dni, nombre, apellidos, edad, imagen FROM estudiantes";
-$estudiantes=consulta_sql($sql);
+$filas=consulta_sql($sql);
 
 /*** Guardar en la variable $imagePng una imagen con el texto 'Sin imagen' ***/
 $blank_image = imagecreate(100, 100);  
@@ -87,8 +87,22 @@ ob_start();
 imagepng($blank_image);
 $imagePng = ob_get_clean();
 
+/*** Guardar en la variable $estudiantes todos los estudiantes, codificando en base 64 las imágenes ***/
+foreach ($filas as $fila)
+{
+        if($fila['imagen']==null)
+        {
+                $fila['imagen']=base64_encode($imagePng);
+        }
+        else
+        {
+                $fila['imagen']=base64_encode($fila['imagen']);
+        }
+        $estudiantes[]=$fila;
+}
+ 
+
 /*** insertar la vista ***/
 require('estudiante.vista.php');
 
 ?>
-
