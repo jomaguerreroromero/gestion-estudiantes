@@ -2,10 +2,27 @@
 <html lang="es">
 <head>
         <title>Tabla de estudiantes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+        <nav class="navbar navbar-expand-sm bg-light">
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Estudiantes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link 3</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
         <div class="container mt-3">
                 
                 <h1>Estudiantes</h1>
@@ -23,7 +40,7 @@
                         </tr>
                         <?php foreach ($estudiantes as $estudiante) : ?>
                         <tr id="<?=$estudiante['dni'] ?>">
-                                <td><img src="data:image/png;base64,<?=$estudiante['imagen']!=null ? base64_encode($estudiante['imagen']) : base64_encode($imagePng)?>" width="100" height="100"/></td>
+                                <td><img src="data:image/png;base64,<?=$estudiante['imagen']?>" width="100" height="100"/></td>
                                 <td><?=$estudiante['dni'] ?></td>
                                 <td><?=$estudiante['nombre'] ?></td>
                                 <td><?=$estudiante['apellidos'] ?></td>
